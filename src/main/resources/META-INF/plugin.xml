@@ -1,22 +1,21 @@
-<idea-plugin>
-    <id>com.nekofar.milad.intellij-nextjs</id>
-    <name>Plugin display name here</name>
-    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
-
-    <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
-    ]]></description>
+<idea-plugin url="https://github.com/nekofar/intellij-nextjs">
+    <id>com.nekofar.milad.intellij.nextjs</id>
+    <!--suppress PluginXmlCapitalization -->
+    <name>Next.js</name>
+    <vendor email="milad@nekofar.com" url="https://github.com/nekofar">Milad Nekofar</vendor>
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
          on how to target different products -->
+    <depends>JavaScript</depends>
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
+        <fileType name="Next.js" language="JavaScript" fileNames="next.config.js"
+                  implementationClass="com.nekofar.milad.intellij.nextjs.NextFileType"/>
+        <!-- works in WebStorm and other SmallIDEs -->
+        <directoryProjectGenerator implementation="com.nekofar.milad.intellij.nextjs.cli.NextCliProjectGenerator"/>
+        <projectTemplatesFactory implementation="com.nekofar.milad.intellij.nextjs.cli.NextProjectTemplateFactory"/>
+        <!-- works in new IDEA wizard -->
+        <moduleBuilder builderClass="com.nekofar.milad.intellij.nextjs.cli.NextCliProjectModuleBuilder"/>
     </extensions>
-
-    <actions>
-        <!-- Add your actions here -->
-    </actions>
 </idea-plugin>
