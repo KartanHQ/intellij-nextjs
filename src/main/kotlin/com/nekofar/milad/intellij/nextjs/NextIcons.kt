@@ -4,7 +4,7 @@ import com.intellij.openapi.util.IconLoader
 
 object NextIcons {
     @JvmField
-    val FileType = IconLoader.getIcon("/icons/next.svg", javaClass)
+    val FileType = IconLoader.getIcon("/icons/type.svg", javaClass)
 
     @JvmField
     val ProjectGenerator = IconLoader.getIcon("/icons/next.svg", javaClass)
