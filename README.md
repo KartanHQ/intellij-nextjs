@@ -7,7 +7,7 @@
 [![Twitter Follow](https://img.shields.io/twitter/follow/nekofar?style=flat)](https://twitter.com/nekofar)
 
 <!-- Plugin description -->
-Provides boilerplate codes for easier new project creation using [Next.js](https://nextjs.org) CLI.
+Quickly start building a new [Next.js](https://nextjs.org) application within seconds, with everything set up for you.
 
 Speed up the setup phase of contract development for both new and experienced developers.
 <!-- Plugin description end -->
