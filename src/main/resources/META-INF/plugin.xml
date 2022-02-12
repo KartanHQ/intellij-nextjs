@@ -10,6 +10,8 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
+        <fileType name="Next.js" language="JavaScript" fileNames="next.config.js"
+                  implementationClass="com.nekofar.milad.intellij.nextjs.NextFileType"/>
         <!-- works in WebStorm and other SmallIDEs -->
         <directoryProjectGenerator implementation="com.nekofar.milad.intellij.nextjs.cli.NextCliProjectGenerator"/>
         <projectTemplatesFactory implementation="com.nekofar.milad.intellij.nextjs.cli.NextProjectTemplateFactory"/>
