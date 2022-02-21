@@ -1,9 +1,11 @@
-
 name: Build
 on:
-  # Trigger the workflow on pushes to only the 'master' and release branches
+  # Trigger the workflow on pushes to only the 'master', 'support' and 'release' branches
   push:
-    branches: [ master, 'release/*' ]
+    branches:
+      - master
+      - support/*
+      - release/*
   # Trigger the workflow on any pull request
   pull_request:
     types: [ opened, reopened ]
@@ -47,7 +49,7 @@ jobs:
           PROPERTIES="$(./gradlew properties --console=plain -q)"
           VERSION="$(echo "$PROPERTIES" | grep "^version:" | cut -f2- -d ' ')"
           NAME="$(echo "$PROPERTIES" | grep "^pluginName:" | cut -f2- -d ' ')"
-          CHANGELOG="$(./gradlew getChangelog --unreleased --no-header --console=plain -q)"
+          CHANGELOG="$(./gradlew getChangelog `[[ $GITHUB_REF == refs/heads/release/* ]] && echo '--unreleased'` --no-header --console=plain -q)"
           CHANGELOG="${CHANGELOG//'%'/'%25'}"
           CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
           CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
@@ -100,7 +102,7 @@ jobs:
   # If accepted and published, release workflow would be triggered
   releaseDraft:
     name: Release Draft
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/heads/support/')
     needs: build
     runs-on: ubuntu-latest
     steps:
