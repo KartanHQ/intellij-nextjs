@@ -1,8 +1,16 @@
 
 name: Run UI Tests
 on:
-  # Workflow is triggered manually.
-  workflow_dispatch
+  # Trigger the workflow on pushes to only the 'hotfix' and 'release' branches
+  push:
+    branches:
+      - hotfix/*
+      - release/*
+  # Trigger the workflow on any pull request
+  pull_request:
+    types: [ opened, reopened ]
+  # Trigger the workflow on manual dispatch
+  workflow_dispatch:
 
 jobs:
 
