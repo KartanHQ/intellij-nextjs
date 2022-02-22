@@ -1,5 +1,5 @@
 
-name: Run UI Tests
+name: Running UI Tests
 on:
   # Trigger the workflow on pushes to only the 'hotfix' and 'release' branches
   push:
