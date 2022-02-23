@@ -54,6 +54,15 @@ jobs:
           # errors especially on GitHub-hosted macos machines.
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      # Pass ide license
+      - name: Decode key file
+        run: |
+          mkdir -p build/idea-sandbox/config-uiTest
+          cd build/idea-sandbox/config-uiTest
+          echo -n "$IDEA_KEY_FILE" | base64 -d > idea.key
+        env:
+          IDEA_KEY_FILE: ${{ secrets.IDEA_KEY_FILE }}
+
       # Run IDEA prepared for UI testing
       - name: Run IDE
         run: ${{ matrix.runIde }}
@@ -65,13 +74,6 @@ jobs:
           url: http://127.0.0.1:8082
           max-attempts: 15
           retry-delay: 30s
-
-      # Pass ide license
-      - name: Decode key file
-        run: echo -n "$IDEA_KEY_FILE" | base64 -d > idea.key
-        working-directory: build/idea-sandbox/config-uiTest
-        env:
-          IDEA_KEY_FILE: ${{ secrets.IDEA_KEY_FILE }}
 
       # Run tests
       - name: Tests
