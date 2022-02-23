@@ -3,12 +3,14 @@ package com.nekofar.milad.intellij.nextjs
 import com.intellij.remoterobot.RemoteRobot
 import com.intellij.remoterobot.search.locators.byXpath
 import com.intellij.remoterobot.stepsProcessing.step
+import com.intellij.remoterobot.utils.keyboard
 import com.intellij.remoterobot.utils.waitFor
 import com.nekofar.milad.intellij.nextjs.pages.dialog
 import com.nekofar.milad.intellij.nextjs.pages.idea
 import com.nekofar.milad.intellij.nextjs.pages.welcomeFrame
 import com.nekofar.milad.intellij.nextjs.utils.RemoteRobotExtension
 import com.nekofar.milad.intellij.nextjs.utils.StepsLogger
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import java.awt.event.KeyEvent.*
@@ -18,6 +20,21 @@ import java.time.Duration.ofMinutes
 class NextUITest {
     init {
         StepsLogger.init()
+    }
+
+    @AfterEach
+    fun closeProject(remoteRobot: RemoteRobot) = with(remoteRobot) {
+        idea {
+            if (remoteRobot.isMac()) {
+                keyboard {
+                    hotKey(VK_SHIFT, VK_META, VK_A)
+                    enterText("Close Project")
+                    enter()
+                }
+            } else {
+                menuBar.select("File", "Close Project")
+            }
+        }
     }
 
     @Test
