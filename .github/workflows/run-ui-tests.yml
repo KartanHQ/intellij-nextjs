@@ -47,6 +47,13 @@ jobs:
           java-version: 11
           cache: gradle
 
+      - name: Setup FFmpeg
+        uses: FedericoCarboni/setup-ffmpeg@v1
+        with:
+          # Not strictly necessary, but it may prevent rate limit
+          # errors especially on GitHub-hosted macos machines.
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       # Run IDEA prepared for UI testing
       - name: Run IDE
         run: ${{ matrix.runIde }}
@@ -61,14 +68,18 @@ jobs:
 
       # Pass ide license
       - name: Decode key file
-        run: echo -n "$IDEA_KEY_FILE" | base64 -d > ./idea.key
-        working-directory: ./build/idea-sandbox/config-uiTest
+        run: echo -n "$IDEA_KEY_FILE" | base64 -d > idea.key
+        working-directory: build/idea-sandbox/config-uiTest
         env:
           IDEA_KEY_FILE: ${{ secrets.IDEA_KEY_FILE }}
 
       # Run tests
       - name: Tests
         run: ./gradlew test
+
+      - name: Move video
+        if: ${{ failure() }}
+        run: mv video build/reports
 
       # Save fails report
       - name: Save fails report
