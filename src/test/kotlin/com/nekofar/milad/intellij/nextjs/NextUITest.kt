@@ -5,11 +5,15 @@ import com.intellij.remoterobot.search.locators.byXpath
 import com.nekofar.milad.intellij.nextjs.pages.dialog
 import com.nekofar.milad.intellij.nextjs.pages.welcomeFrame
 import com.nekofar.milad.intellij.nextjs.utils.RemoteRobotExtension
+import com.nekofar.milad.intellij.nextjs.utils.StepsLogger
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 
 @ExtendWith(RemoteRobotExtension::class)
 class NextUITest {
+    init {
+        StepsLogger.init()
+    }
 
     @Test
     fun createNewProject(remoteRobot: RemoteRobot) = with(remoteRobot) {
