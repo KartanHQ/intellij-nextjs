@@ -56,6 +56,13 @@ jobs:
           max-attempts: 15
           retry-delay: 30s
 
+      # Pass ide license
+      - name: Decode key file
+        run: echo -n "$IDEA_KEY_FILE" | base64 -d > ./idea.key
+        working-directory: ./build/idea-sandbox/config-uiTest
+        env:
+          IDEA_KEY_FILE: ${{ secrets.IDEA_KEY_FILE }}
+
       # Run tests
       - name: Tests
         run: ./gradlew test
