@@ -25,12 +25,14 @@ jobs:
               export DISPLAY=:99.0
               Xvfb -ac :99 -screen 0 1920x1080x16 &
               mkdir -p build/reports
+              mkdir -p build/idea-sandbox/config-uiTest
               gradle runIdeForUiTests > build/reports/idea.log &
           - os: windows-latest
             runIde: start gradlew.bat runIdeForUiTests
           - os: macos-latest
             runIde: |
               mkdir -p build/reports
+              mkdir -p build/idea-sandbox/config-uiTest
               ./gradlew runIdeForUiTests > build/reports/idea.log &
 
     steps:
@@ -47,6 +49,13 @@ jobs:
           java-version: 11
           cache: gradle
 
+      # Pass ide license
+      - name: Decode key file
+        run: echo -n "$IDEA_KEY_FILE" | base64 -d > idea.key
+        working-directory: build/idea-sandbox/config-uiTest
+        env:
+          IDEA_KEY_FILE: ${{ secrets.IDEA_KEY_FILE }}
+
       # Run IDEA prepared for UI testing
       - name: Run IDE
         run: ${{ matrix.runIde }}
@@ -58,13 +67,6 @@ jobs:
           url: http://127.0.0.1:8082
           max-attempts: 15
           retry-delay: 30s
-
-      # Pass ide license
-      - name: Decode key file
-        run: echo -n "$IDEA_KEY_FILE" | base64 -d > ./idea.key
-        working-directory: ./build/idea-sandbox/config-uiTest
-        env:
-          IDEA_KEY_FILE: ${{ secrets.IDEA_KEY_FILE }}
 
       # Run tests
       - name: Tests
