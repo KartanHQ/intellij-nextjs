@@ -29,12 +29,6 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     testImplementation("com.intellij.remoterobot:remote-robot:0.11.13")
     testImplementation("com.intellij.remoterobot:remote-fixtures:0.11.13")
-
-    // Logging Network Calls
-    testImplementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
-
-    // Video Recording
-    implementation("com.automation-remarks:video-recorder-junit5:2.0")
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/

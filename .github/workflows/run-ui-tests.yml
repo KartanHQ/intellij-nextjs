@@ -47,13 +47,6 @@ jobs:
           java-version: 11
           cache: gradle
 
-      - name: Setup FFmpeg
-        uses: FedericoCarboni/setup-ffmpeg@v1
-        with:
-          # Not strictly necessary, but it may prevent rate limit
-          # errors especially on GitHub-hosted macos machines.
-          token: ${{ secrets.GITHUB_TOKEN }}
-
       # Pass ide license
       - name: Decode key file
         run: |
@@ -78,10 +71,6 @@ jobs:
       # Run tests
       - name: Tests
         run: ./gradlew test
-
-      - name: Move video
-        if: ${{ failure() }}
-        run: mv video build/reports
 
       # Save fails report
       - name: Save fails report
