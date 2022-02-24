@@ -56,7 +56,7 @@ class NextUITest {
             }
         }
         idea {
-            waitFor(ofMinutes(10)) { isDumbMode().not() }
+            waitForFinishBackgroundTasks()
             step("Find config file") {
                 with(projectViewTree) {
                     if (hasText("next.config.js").not()) {

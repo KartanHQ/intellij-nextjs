@@ -6,10 +6,13 @@ import com.intellij.remoterobot.fixtures.*
 import com.intellij.remoterobot.search.locators.byXpath
 import com.intellij.remoterobot.stepsProcessing.step
 import com.intellij.remoterobot.utils.waitFor
-import java.time.Duration
+import java.lang.Thread.currentThread
+import java.lang.Thread.sleep
+import java.time.Duration.ofSeconds
+
 
 fun RemoteRobot.idea(function: IdeaFrame.() -> Unit) {
-    find<IdeaFrame>(timeout = Duration.ofSeconds(10)).apply(function)
+    find<IdeaFrame>(timeout = ofSeconds(10)).apply(function)
 }
 
 @FixtureName("Idea frame")
@@ -17,33 +20,32 @@ fun RemoteRobot.idea(function: IdeaFrame.() -> Unit) {
 class IdeaFrame(remoteRobot: RemoteRobot, remoteComponent: RemoteComponent) :
     CommonContainerFixture(remoteRobot, remoteComponent) {
 
+    val inlineProgressPanel
+        get() = find<ComponentFixture>(byXpath("//div[@class='InlineProgressPanel']"))
+
     val projectViewTree
         get() = find<ContainerFixture>(byXpath("ProjectViewTree", "//div[@class='ProjectViewTree']"))
 
     val projectName
         get() = step("Get project name") { return@step callJs<String>("component.getProject().getName()") }
 
-    val menuBar: JMenuBarFixture
-        get() = step("Menu...") {
-            return@step remoteRobot.find(JMenuBarFixture::class.java, JMenuBarFixture.byType())
-        }
+    val menuBar
+        get() = step("Menu...") { return@step remoteRobot.find(JMenuBarFixture::class.java, JMenuBarFixture.byType()) }
 
-    @JvmOverloads
-    fun dumbAware(timeout: Duration = Duration.ofMinutes(5), function: () -> Unit) {
-        step("Wait for smart mode") {
-            waitFor(duration = timeout, interval = Duration.ofSeconds(5)) {
-                runCatching { isDumbMode().not() }.getOrDefault(false)
-            }
-            function()
-            step("..wait for smart mode again") {
-                waitFor(duration = timeout, interval = Duration.ofSeconds(5)) {
-                    isDumbMode().not()
+    fun waitForFinishBackgroundTasks() {
+        waitFor(ofSeconds(300), ofSeconds(10), "The background tasks did not finish in 5 minutes.") {
+            (0..4).forEach { _ ->
+                val inlineProgressPanelContent = inlineProgressPanel.findAllText()
+                if (inlineProgressPanelContent.isNotEmpty()) {
+                    return@waitFor false
+                }
+                try {
+                    sleep(1000)
+                } catch (e: InterruptedException) {
+                    currentThread().interrupt()
                 }
             }
+            return@waitFor true
         }
-    }
-
-    fun isDumbMode(): Boolean {
-        return callJs("com.intellij.openapi. project.DumbService.isDumb(component.project);", true)
     }
 }
