@@ -28,7 +28,7 @@ class NextUITest {
             if (remoteRobot.isMac()) {
                 keyboard {
                     hotKey(VK_SHIFT, VK_META, VK_A)
-                    enterText("Close Project")
+                    enterText("Close Project", 200)
                     enter()
                 }
             } else {
