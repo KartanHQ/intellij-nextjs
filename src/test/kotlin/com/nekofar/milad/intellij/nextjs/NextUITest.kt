@@ -1,6 +1,5 @@
 package com.nekofar.milad.intellij.nextjs
 
-import com.automation.remarks.junit5.Video
 import com.intellij.remoterobot.RemoteRobot
 import com.intellij.remoterobot.search.locators.byXpath
 import com.intellij.remoterobot.stepsProcessing.step
@@ -39,7 +38,6 @@ class NextUITest {
     }
 
     @Test
-    @Video
     fun createNewProject(remoteRobot: RemoteRobot) = with(remoteRobot) {
         welcomeFrame {
             createNewProjectLink.click()
