@@ -6,8 +6,8 @@ import org.junit.jupiter.api.extension.ParameterContext
 import org.junit.jupiter.api.extension.ParameterResolver
 
 class RemoteRobotExtension : ParameterResolver {
-    private val url: String = System.getProperty("remote-robot-url") ?: "http://127.0.0.1:8082"
-    private val remoteRobot: RemoteRobot = RemoteRobot(url)
+    private val url = System.getProperty("remote-robot-url") ?: "http://127.0.0.1:8082"
+    private val remoteRobot = RemoteRobot(url)
 
     override fun supportsParameter(
         parameterContext: ParameterContext?, extensionContext: ExtensionContext?
