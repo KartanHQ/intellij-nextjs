@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import java.awt.event.KeyEvent.*
 import java.time.Duration.ofMinutes
+import java.time.Duration.ofSeconds
 
 @ExtendWith(RemoteRobotExtension::class)
 class NextUITest {
@@ -58,7 +59,7 @@ class NextUITest {
                 with(projectViewTree) {
                     if (hasText("next.config.js").not()) {
                         findText(projectName).doubleClick()
-                        waitFor { hasText("next.config.js") }
+                        waitFor(ofSeconds(10)) { hasText("next.config.js") }
                     }
                     findText("next.config.js").click()
                 }
