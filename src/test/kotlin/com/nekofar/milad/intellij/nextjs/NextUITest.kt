@@ -53,7 +53,7 @@ class NextUITest {
             }
         }
         idea {
-            waitFor(ofMinutes(5)) { isDumbMode().not() }
+            waitFor(ofMinutes(10)) { isDumbMode().not() }
             step("Find config file") {
                 with(projectViewTree) {
                     if (hasText("next.config.js").not()) {
