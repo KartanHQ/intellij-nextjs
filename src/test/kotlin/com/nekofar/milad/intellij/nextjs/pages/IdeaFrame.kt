@@ -33,7 +33,7 @@ class IdeaFrame(remoteRobot: RemoteRobot, remoteComponent: RemoteComponent) :
         get() = step("Menu...") { return@step remoteRobot.find(JMenuBarFixture::class.java, JMenuBarFixture.byType()) }
 
     fun waitForFinishBackgroundTasks() {
-        waitFor(ofSeconds(300), ofSeconds(60), "The background tasks did not finish in 5 minutes.") {
+        waitFor(ofSeconds(300), ofSeconds(10), "The background tasks did not finish in 5 minutes.") {
             (0..4).forEach { _ ->
                 val inlineProgressPanelContent = inlineProgressPanel.findAllText()
                 if (inlineProgressPanelContent.isNotEmpty()) {
