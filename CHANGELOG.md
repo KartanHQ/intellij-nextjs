@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+## [1.1.0-alpha.2] - 2022-02-25
+
+### Features
+
+- Add the typescript project creation option
+
 ## [1.0.0] - 2022-02-19
 
 ### Features
