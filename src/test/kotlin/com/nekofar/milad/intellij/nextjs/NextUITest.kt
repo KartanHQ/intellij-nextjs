@@ -10,11 +10,12 @@ import com.nekofar.milad.intellij.nextjs.pages.idea
 import com.nekofar.milad.intellij.nextjs.pages.welcomeFrame
 import com.nekofar.milad.intellij.nextjs.utils.RemoteRobotExtension
 import com.nekofar.milad.intellij.nextjs.utils.StepsLogger
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.*
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation
 import org.junit.jupiter.api.extension.ExtendWith
 import java.time.Duration.ofSeconds
 
+@TestMethodOrder(OrderAnnotation::class)
 @ExtendWith(RemoteRobotExtension::class)
 class NextUITest {
     init {
@@ -30,6 +31,7 @@ class NextUITest {
 
     @Test
     @Video
+    @Order(1)
     fun createNewProject(remoteRobot: RemoteRobot) = with(remoteRobot) {
         welcomeFrame {
             createNewProjectLink.click()
@@ -60,6 +62,7 @@ class NextUITest {
 
     @Test
     @Video
+    @Order(2)
     fun createNewTypeScriptProject(remoteRobot: RemoteRobot) = with(remoteRobot) {
         welcomeFrame {
             createNewProjectLink.click()
