@@ -57,4 +57,36 @@ class NextUITest {
             }
         }
     }
+
+    @Test
+    @Video
+    fun createNewTypeScriptProject(remoteRobot: RemoteRobot) = with(remoteRobot) {
+        welcomeFrame {
+            createNewProjectLink.click()
+            dialog("New Project") {
+                findText("JavaScript").click()
+                jList(
+                    byXpath(
+                        "//div[contains(@visible_text_keys, 'create.react.app.name')]"
+                    )
+                ).clickItem("Next.js")
+                button("Next").click()
+                checkBox("Create TypeScript project").select()
+                button("Finish").click()
+            }
+        }
+        idea {
+            waitForFinishBackgroundTasks()
+            step("Find config file") {
+                with(projectViewTree) {
+                    if (hasText("next.config.js").not()) {
+                        findText(projectName).doubleClick()
+                        waitFor(ofSeconds(10)) { hasText("next.config.js") }
+                    }
+                    findText("next.config.js").click()
+                    findText("next-env.d.ts").click()
+                }
+            }
+        }
+    }
 }
