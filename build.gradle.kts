@@ -1,3 +1,4 @@
+import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun properties(key: String) = project.findProperty(key).toString()
@@ -28,7 +29,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     testImplementation("com.intellij.remoterobot:remote-robot:0.11.13")
-    testImplementation("com.intellij.remoterobot:remote-fixtures:1.1.18")
+    testImplementation("com.intellij.remoterobot:remote-fixtures:0.11.13")
     // Video Recording
     testImplementation("com.automation-remarks:video-recorder-junit5:2.0")
 }
@@ -88,7 +89,7 @@ tasks {
                     throw GradleException("Plugin description section not found in README.md:\n$start ... $end")
                 }
                 subList(indexOf(start) + 1, indexOf(end))
-            }.joinToString("\n").run { org.jetbrains.changelog.markdownToHTML(this) }
+            }.joinToString("\n").run { markdownToHTML(this) }
         )
 
         // Get the latest available change notes from the changelog file
@@ -127,6 +128,7 @@ tasks {
         channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
     }
 }
+
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
 }
