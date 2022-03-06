@@ -8,4 +8,7 @@ object NextIcons {
 
     @JvmField
     val ProjectGenerator = IconLoader.getIcon("/icons/next.svg", javaClass)
+
+    @JvmField
+    val RunAnything = IconLoader.getIcon("/icons/next.svg", javaClass)
 }

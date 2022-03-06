@@ -17,5 +17,8 @@
         <projectTemplatesFactory implementation="com.nekofar.milad.intellij.nextjs.cli.NextProjectTemplateFactory"/>
         <!-- works in new IDEA wizard -->
         <moduleBuilder builderClass="com.nekofar.milad.intellij.nextjs.cli.NextCliProjectModuleBuilder"/>
+        <!-- Run Anything -->
+        <runAnything.executionProvider
+                implementation="com.nekofar.milad.intellij.nextjs.execution.NextRunAnythingProvider" />
     </extensions>
 </idea-plugin>
