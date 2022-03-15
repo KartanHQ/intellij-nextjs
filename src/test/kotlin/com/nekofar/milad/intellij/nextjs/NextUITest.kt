@@ -5,6 +5,7 @@ import com.intellij.remoterobot.RemoteRobot
 import com.intellij.remoterobot.search.locators.byXpath
 import com.intellij.remoterobot.stepsProcessing.step
 import com.intellij.remoterobot.utils.waitFor
+import com.nekofar.milad.intellij.nextjs.fixtures.terminal
 import com.nekofar.milad.intellij.nextjs.pages.dialog
 import com.nekofar.milad.intellij.nextjs.pages.idea
 import com.nekofar.milad.intellij.nextjs.pages.welcomeFrame
@@ -48,6 +49,9 @@ class NextUITest {
         }
         idea {
             waitForFinishBackgroundTasks()
+            step("Find terminal") {
+                terminal().click()
+            }
             step("Find config file") {
                 with(projectViewTree) {
                     if (hasText("next.config.js").not()) {
