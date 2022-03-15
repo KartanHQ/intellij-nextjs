@@ -18,7 +18,7 @@ import java.time.Duration.ofSeconds
 
 @TestMethodOrder(OrderAnnotation::class)
 @ExtendWith(RemoteRobotExtension::class)
-class NextUITest {
+class UITest {
     init {
         StepsLogger.init()
     }
