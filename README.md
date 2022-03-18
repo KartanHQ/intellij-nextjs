@@ -9,7 +9,7 @@
 <!-- Plugin description -->
 Quickly start building a new [Next.js](https://nextjs.org) application within seconds, with everything set up for you.
 
-Speed up the setup phase of contract development for both new and experienced developers.
+Speed up the setup phase of application development for both new and experienced developers.
 <!-- Plugin description end -->
 
 ## Installation
