@@ -17,5 +17,7 @@
         <projectTemplatesFactory implementation="com.nekofar.milad.intellij.nextjs.cli.NextProjectTemplateFactory"/>
         <!-- works in new IDEA wizard -->
         <moduleBuilder builderClass="com.nekofar.milad.intellij.nextjs.cli.NextCliProjectModuleBuilder"/>
+        
+        <errorHandler implementation="com.nekofar.milad.intellij.nextjs.diagnostic.NextErrorReportSubmitter"/>
     </extensions>
 </idea-plugin>
