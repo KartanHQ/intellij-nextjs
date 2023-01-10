@@ -2,7 +2,7 @@
 
 [![JetBrains Plugins](https://img.shields.io/jetbrains/plugin/v/18604-nextjs)](https://plugins.jetbrains.com/plugin/18604-nextjs)
 [![JetBrains plugins](https://img.shields.io/jetbrains/plugin/d/18604-nextjs)](https://plugins.jetbrains.com/plugin/18604-nextjs/versions)
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/nekofar/intellij-nextjs/Build/master)](https://github.com/nekofar/intellij-nextjs/actions/workflows/build.yml)
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/nekofar/intellij-nextjs/build.yml)](https://github.com/nekofar/intellij-nextjs/actions/workflows/build.yml)
 [![GitHub](https://img.shields.io/github/license/nekofar/intellij-nextjs)](https://github.com/nekofar/intellij-nextjs/blob/master/LICENSE)
 [![Twitter Follow](https://img.shields.io/twitter/follow/nekofar?style=flat)](https://twitter.com/nekofar)
 
