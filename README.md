@@ -4,7 +4,7 @@
 [![JetBrains plugins](https://img.shields.io/jetbrains/plugin/d/18604-nextjs)](https://plugins.jetbrains.com/plugin/18604-nextjs/versions)
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/nekofar/intellij-nextjs/build.yml)](https://github.com/nekofar/intellij-nextjs/actions/workflows/build.yml)
 [![GitHub](https://img.shields.io/github/license/nekofar/intellij-nextjs)](https://github.com/nekofar/intellij-nextjs/blob/master/LICENSE)
-[![Twitter Follow](https://img.shields.io/twitter/follow/nekofar?style=flat)](https://twitter.com/nekofar)
+[![Twitter Follow](https://img.shields.io/badge/follow-%40nekofar-1DA1F2?logo=twitter&style=flat)](https://twitter.com/nekofar)
 
 <!-- Plugin description -->
 Quickly start building a new [Next.js](https://nextjs.org) application within seconds, with everything set up for you.
