@@ -25,6 +25,13 @@ jobs:
       changelog: ${{ steps.changelog.outputs.changelog }}
     steps:
 
+      # Free GitHub Actions Environment Disk Space
+      - name: Maximize Build Space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+
       # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v3.3.0
@@ -67,11 +74,9 @@ jobs:
           fi
           
           CHANGELOG="$(./gradlew getChangelog ${GRADLE_PARAMS[@]})"
-          CHANGELOG="${CHANGELOG//'%'/'%25'}"
-          CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
-          CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
-          
-          echo "::set-output name=changelog::$CHANGELOG"
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       # Cache Plugin Verifier IDEs
       - name: Setup Plugin Verifier IDEs Cache
