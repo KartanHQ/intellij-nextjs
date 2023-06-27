@@ -1,14 +1,25 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
     <id>com.nekofar.milad.intellij.nextjs</id>
-    <!--suppress PluginXmlCapitalization -->
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
     <name>Next.js</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="hello@kartan.net" url="https://kartan.net">Kartan</vendor>
 
-    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
-         on how to target different products -->
-    <depends>JavaScript</depends>
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>JavaScript</depends>
 
+    <!-- The base resource bundle for localizing messages in the plugin. -->
+    <resource-bundle>messages.NextBundle</resource-bundle>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <fileType name="Next.js" language="JavaScript" fileNames="next.config.js"
                   implementationClass="com.nekofar.milad.intellij.nextjs.NextFileType"/>
@@ -17,7 +28,7 @@
         <projectTemplatesFactory implementation="com.nekofar.milad.intellij.nextjs.cli.NextProjectTemplateFactory"/>
         <!-- works in new IDEA wizard -->
         <moduleBuilder builderClass="com.nekofar.milad.intellij.nextjs.cli.NextCliProjectModuleBuilder"/>
-        
+
         <errorHandler implementation="com.nekofar.milad.intellij.nextjs.diagnostic.NextErrorReportSubmitter"/>
     </extensions>
 </idea-plugin>
