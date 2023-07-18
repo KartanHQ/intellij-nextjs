@@ -9,9 +9,10 @@
 
 
 <!-- Plugin description -->
-Quickly start building a new [Next.js](https://nextjs.org) application within seconds, with everything set up for you.
+[Next.js](https://nextjs.org) is a comprehensive tool for creating full-stack web applications. It extends the latest features of `React` and integrates robust, Rust-based JavaScript tooling for expedited build processes.
 
-Speed up the setup phase of application development for both new and experienced developers.
+The tool is designed to speed up both the deployment and development setup phases of a new Next.js application, making it an efficient tool for both novice and experienced developers.
+
 <!-- Plugin description end -->
 
 ## Installation
