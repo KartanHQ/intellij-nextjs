@@ -17,4 +17,5 @@ The tool is designed to speed up both the deployment and development setup phase
 
 ## Installation
 
-To install plugin open `Preferences > Plugins > Marketplace`, and search for Next.js.
+For plugin installation, navigate to `Preferences`, then `Plugins`, and finally `Marketplace`. In the search bar, enter `Next`.
+
